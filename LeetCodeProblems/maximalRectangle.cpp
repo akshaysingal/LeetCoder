@@ -8,6 +8,19 @@
 
 */
 
+
+/*
+ * This function looks for the largest rectangle containing all 1's within a given board.
+ * 
+ * Logic: Given the position (x, y) of the cell were we have seen a '1', we do the following:
+ *		1. Find the width of the rectangle: count the number of consecutive '1' seen in the same row.
+ *		2. Find the height of the rectangle:
+ *			(i)  Look above the current row - count the number of rows above that have all 1's for the width found in step 1.
+ *			(ii) Look below the current row - count the number of rows blow that have all 1's for the width found in step 1.
+ *		3. Compare the locally found area with the global area. If the local area is greater, make it the new global area.
+ * 
+ * Time complexity of this function alone: O(m*n)
+ */
 void MaximalRectangleSolution::findMaxArea(vector<vector<char>> &board, int &area, int x, int y)
 {
 	int localWidth = 0, localHeight = 0;
@@ -74,11 +87,18 @@ void MaximalRectangleSolution::findMaxArea(vector<vector<char>> &board, int &are
 	area = ((localWidth*localHeight) > area) ? area = localWidth*localHeight : area;
 }
 
+/*
+ * This function iterates over a 2D matrix and for every '1' seen in the matrix,
+ * searches for the largest rectangle containing all 1's within the matrix.
+ *
+ * Assuming the dimensions of the matrix are m by n.
+ * Time Complexity: O( (m*n)^2 )
+ */
 int MaximalRectangleSolution::maximalRectangle(vector<vector<char>>& board) {
 	int area = 0;
 	int i = 0, j = 0;
 
-	if (board.size() == 0)
+	if (board.size() == 0 || board[0].size() == 0)
 	{
 		return area;
 	}
