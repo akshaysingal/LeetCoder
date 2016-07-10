@@ -15,7 +15,6 @@
  *  search("bad") -> true
  *  search(".ad") -> true
  *  search("b..") -> true
- *
  */
 
 // Solution: Store the words as a trie
